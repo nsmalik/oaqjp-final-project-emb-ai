@@ -12,11 +12,11 @@ def emotion_detector(text_to_analyse):
     response = requests.post(url, json = text_obj, headers=header)
 
     #Convert response text into a json object
-    json_response = json.loads(response.text)
+    dict_response = json.loads(response.text)
 
     #Populate output dict with extracted emotions and corresponding values
-    for each in json_response['emotionPredictions'][0]['emotion']:
-        out[each] = json_response['emotionPredictions'][0]['emotion'][each]
+    for each in dict_response['emotionPredictions'][0]['emotion']:
+        out[each] = dict_response['emotionPredictions'][0]['emotion'][each]
     out['dominant_emotion'] = max(out, key=out.get)
     return out
 
